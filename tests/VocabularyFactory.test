@@ -1,0 +1,23 @@
+<?php
+class VocabularyFactoryTest extends DrupalWebTestCase {
+  public static function getInfo() {
+    return array(
+      'name' => 'VocabularyFactory unit tests',
+      'description' => 'Test the methods on the VocabularyFactory class',
+      'group' => 'Phactory Drone',
+    );
+  }
+
+  public function setUp() {
+    module_load_include('inc', 'phactorydrone', 'lib/VocabularyFactory');
+    parent::setUp('taxonomy');
+  }
+
+  public function testVocabularyFactoryCreate() {
+    $vocabulary = VocabularyFactory::create(array('name' => 'Test Vocabulary',
+                                                  'machine_name' => 'test_vocab',
+                                                  'heirarchy' => 0,
+                                                 ));
+    $this->assertNotNull($vocabulary->vid);
+  }
+}

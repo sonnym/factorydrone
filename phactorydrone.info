@@ -1,0 +1,14 @@
+name = Phactory Drone
+description = A simple way to create content for use in tests
+package = Development
+core = 7.x
+
+hidden = TRUE
+
+; register class files for dynamic loading
+files[] = lib/TermFactory.inc
+files[] = lib/VocabularyFactory.inc
+
+; register test files
+files[] = tests/TermFactory.test
+files[] = tests/VocabularyFactory.test

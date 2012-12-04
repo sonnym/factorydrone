@@ -1,0 +1,29 @@
+<?php
+class TermFactoryTest extends DrupalWebTestCase {
+  public static function getInfo() {
+    return array(
+      'name' => 'TermFactory unit tests',
+      'description' => 'Test the methods on the TermFactory class',
+      'group' => 'Phactory Drone',
+    );
+  }
+
+  public function setUp() {
+    module_load_include('inc', 'phactorydrone', 'lib/VocabularyFactory');
+    module_load_include('inc', 'phactorydrone', 'lib/TermFactory');
+    parent::setUp();
+  }
+
+  public function testTermFactoryCreate() {
+    $vocabulary = VocabularyFactory::create(array('name' => 'foo',
+                                                  'machine_name' => 'bar',
+                                                  'heirarchy' => 0,
+                                                 ));
+
+    $term = TermFactory::create('bar', array('name' => 'baz'));
+    $this->assertNotNull($term->tid);
+
+    $tree = taxonomy_get_tree($vocabulary->vid);
+    $this->assertEqual($tree[0]->name, 'baz');
+  }
+}
