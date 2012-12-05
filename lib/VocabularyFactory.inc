@@ -15,7 +15,7 @@ class VocabularyFactory {
    *   An associative array with options for the vocabulary
    *   - name: The human-readable name of the vocabulary.
    *   - machine_name: The machine name of the vocabulary.
-   *   - hierarchy: The hierarchy level of the vocabular
+   *   - hierarchy: The hierarchy level of the vocabulary.
    *
    * @return stdClass
    *   The new vocabulary
