@@ -9,7 +9,6 @@ class VocabularyFactoryTest extends DrupalWebTestCase {
   }
 
   public function setUp() {
-    module_load_include('inc', 'phactorydrone', 'lib/VocabularyFactory');
     parent::setUp('taxonomy');
   }
 

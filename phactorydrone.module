@@ -1,5 +1,8 @@
 <?php
 /**
  * @file
- * Required file
+ * Automatically load all factory classes
  */
+
+module_load_include('inc', 'phactorydrone', 'lib/VocabularyFactory');
+module_load_include('inc', 'phactorydrone', 'lib/TermFactory');

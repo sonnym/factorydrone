@@ -9,9 +9,7 @@ class TermFactoryTest extends DrupalWebTestCase {
   }
 
   public function setUp() {
-    module_load_include('inc', 'phactorydrone', 'lib/VocabularyFactory');
-    module_load_include('inc', 'phactorydrone', 'lib/TermFactory');
-    parent::setUp();
+    parent::setUp('taxonomy');
   }
 
   public function testTermFactoryCreate() {
