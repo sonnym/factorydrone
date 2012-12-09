@@ -1,0 +1,42 @@
+<?php
+module_load_include('inc', 'phactorydrone', 'tests/PhactoryDroneTestCase');
+
+class FactoryTest extends PhactoryDroneTestCase {
+  public static function getInfo() {
+    return array(
+      'name' => 'Factory unit tests',
+      'description' => 'Test the methods on the Factory class',
+      'group' => 'Phactory Drone',
+    );
+  }
+
+  public function testFactoryCanCreateSequenceCallbacks() {
+    $sequence = Factory::sequence(function ($n) { return $n; });
+    $this->assertEqual(0, $sequence());
+    $this->assertEqual(1, $sequence());
+    $this->assertEqual(2, $sequence());
+  }
+
+  public function testFactorySequenceInterpolates() {
+    $sequence = Factory::sequence(function ($n) { return "sequence {$n}"; });
+    $this->assertEqual('sequence 0', $sequence());
+  }
+
+  public function testFactoryThrowsWhenAddingFileToFactoryPaths() {
+    try {
+      Factory::add_factory_path(__FILE__);
+    } catch (Exception $e) {
+      $this->assertEqual($e->getMessage(), '$path must be a directory.');
+    }
+  }
+
+  public function testFactoryCanLoadDefinitions() {
+    $this->load_factory_definitions();
+    $definitions = Factory::get_definitions();
+
+    foreach ($definitions as $definition) {
+      $this->assert(isset($definition['type']));
+      $this->assert(isset($definition['opt_cb']));
+    }
+  }
+}
