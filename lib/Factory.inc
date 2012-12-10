@@ -37,6 +37,25 @@ class Factory {
   }
 
   /**
+   * Returns the default options generated for a given factory
+   *
+   * @param string name
+   *   The name of the factory options being fetched
+   *
+   * @return array
+   *   The generated options
+   */
+  public static function get_default_options($name) {
+    if (!isset(self::$definitions[$name])) {
+      throw new Exception("There is no factory definition called {$name}.");
+    }
+
+    $generator = self::$definitions[$name]['opt_cb'];
+
+    return $generator();
+  }
+
+  /**
    * Creates a sequence to assist with uniqueness constraints
    *
    * @param Closure $generator

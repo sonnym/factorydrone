@@ -37,4 +37,15 @@ class FactoryTest extends PhactoryDroneTestCase {
       $this->assert(isset($definition['opt_cb']));
     }
   }
+
+  public function testCanGetDefaultOptionsForAGivenFactory() {
+    $default_options = Factory::get_default_options('factory');
+    $this->assert(is_array($default_options));
+  }
+
+  public function testFactoryThrowsWhenAttemptingToAccessNonexistentFactory() {
+    $this->assertThrows('There is no factory definition called nonexistent.', function() {
+      Factory::get_default_options('nonexistent');
+    });
+  }
 }
