@@ -1,5 +1,7 @@
 <?php
-class TermFactoryTest extends DrupalWebTestCase {
+module_load_include('inc', 'phactorydrone', 'tests/PhactoryDroneTestCase');
+
+class TermFactoryTest extends PhactoryDroneTestCase {
   public static function getInfo() {
     return array(
       'name' => 'TermFactory unit tests',
@@ -9,19 +11,17 @@ class TermFactoryTest extends DrupalWebTestCase {
   }
 
   public function setUp() {
+    $this->load_factory_definitions();
     parent::setUp('taxonomy');
   }
 
   public function testTermFactoryCreate() {
-    $vocabulary = VocabularyFactory::create(array('name' => 'foo',
-                                                  'machine_name' => 'bar',
-                                                  'heirarchy' => 0,
-                                                 ));
+    $vocabulary = VocabularyFactory::create('vocab');
 
-    $term = TermFactory::create('bar', array('name' => 'baz'));
+    $term = TermFactory::create('term', array('vid' => $vocabulary->vid));
     $this->assertNotNull($term->tid);
 
     $tree = taxonomy_get_tree($vocabulary->vid);
-    $this->assertEqual($tree[0]->name, 'baz');
+    $this->assertEqual($tree[0]->name, 'term_name0');
   }
 }
