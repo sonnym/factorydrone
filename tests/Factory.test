@@ -23,11 +23,9 @@ class FactoryTest extends PhactoryDroneTestCase {
   }
 
   public function testFactoryThrowsWhenAddingFileToFactoryPaths() {
-    try {
+    $this->assertThrows('$path must be a directory.', function () {
       Factory::add_factory_path(__FILE__);
-    } catch (Exception $e) {
-      $this->assertEqual($e->getMessage(), '$path must be a directory.');
-    }
+    });
   }
 
   public function testFactoryCanLoadDefinitions() {

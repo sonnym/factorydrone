@@ -8,4 +8,12 @@ class PhactoryDroneTestCase extends DrupalWebTestCase {
     Factory::add_factory_path(join(DIRECTORY_SEPARATOR, array(dirname(__FILE__), 'factories')));
     Factory::load_definitions();
   }
+
+  protected function assertThrows($message, $cb) {
+    try {
+      $cb();
+    } catch (Exception $e) {
+      $this->assertEqual($e->getMessage(), $message);
+    }
+  }
 }
