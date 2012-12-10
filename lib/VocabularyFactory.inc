@@ -11,6 +11,9 @@ class VocabularyFactory {
    * The vocabulary is created with the supplied options, persisted, and
    * returned to the caller.
    *
+   * @param string $name
+   *   The name of the factory to generate
+   *
    * @param array $opts
    *   An associative array with options for the vocabulary
    *   - name: The human-readable name of the vocabulary.
@@ -22,8 +25,8 @@ class VocabularyFactory {
    *
    * @see http://api.drupal.org/api/drupal/modules%21taxonomy%21taxonomy.module/function/taxonomy_vocabulary_save/7
    */
-  public static function create($opts = array()) {
-    $vocabulary = (object) $opts;
+  public static function create(string $name, array $opts = array()) {
+    $vocabulary = (object) array_merge(Factory::get_default_options($name), $opts);
 
     taxonomy_vocabulary_save($vocabulary);
 

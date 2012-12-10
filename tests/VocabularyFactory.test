@@ -1,5 +1,7 @@
 <?php
-class VocabularyFactoryTest extends DrupalWebTestCase {
+module_load_include('inc', 'phactorydrone', 'tests/PhactoryDroneTestCase');
+
+class VocabularyFactoryTest extends PhactoryDroneTestCase {
   public static function getInfo() {
     return array(
       'name' => 'VocabularyFactory unit tests',
@@ -9,14 +11,26 @@ class VocabularyFactoryTest extends DrupalWebTestCase {
   }
 
   public function setUp() {
+    $this->load_factory_definitions();
     parent::setUp('taxonomy');
   }
 
-  public function testVocabularyFactoryCreate() {
-    $vocabulary = VocabularyFactory::create(array('name' => 'Test Vocabulary',
-                                                  'machine_name' => 'test_vocab',
-                                                  'heirarchy' => 0,
-                                                 ));
+  public function testVocabularyFactoryWithDefaultOptions() {
+    $vocabulary = VocabularyFactory::create('vocab');
     $this->assertNotNull($vocabulary->vid);
+    $this->assertequal($vocabulary->name, 'vocabulary_name0');
+    $this->assertequal($vocabulary->machine_name, 'vocabulary_machine_name0');
+    $this->assertequal($vocabulary->heirarchy, 0);
+  }
+
+  public function testVocabularyFactoryCreateWithOverridenOptions() {
+    $vocabulary = VocabularyFactory::create('vocab', array('name' => 'Test Vocabulary',
+                                                           'machine_name' => 'test_vocab',
+                                                           'heirarchy' => 1,
+                                                          ));
+    $this->assertNotNull($vocabulary->vid);
+    $this->assertequal($vocabulary->name, 'Test Vocabulary');
+    $this->assertequal($vocabulary->machine_name, 'test_vocab');
+    $this->assertequal($vocabulary->heirarchy, 1);
   }
 }
