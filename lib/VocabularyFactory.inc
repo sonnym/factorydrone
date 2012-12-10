@@ -25,7 +25,7 @@ class VocabularyFactory {
    *
    * @see http://api.drupal.org/api/drupal/modules%21taxonomy%21taxonomy.module/function/taxonomy_vocabulary_save/7
    */
-  public static function create(string $name, array $opts = array()) {
+  public static function create($name, $opts = array()) {
     $vocabulary = (object) array_merge(Factory::get_default_options($name), $opts);
 
     taxonomy_vocabulary_save($vocabulary);
