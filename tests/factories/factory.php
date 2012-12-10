@@ -1,4 +1,5 @@
 <?php
-Factory::define('', 'factory', function () {
-  return array();
-});
+Factory::define('', 'factory', array(
+  'foo' => 'bar',
+  'sequence' => Factory::sequence(function ($n) { return "sequence {$n}"; }),
+));

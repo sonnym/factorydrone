@@ -29,11 +29,11 @@ class Factory {
    * @param string $name
    *   The name to register for the factory (must be unique)
    *
-   * @param Closure $opt_cb
-   *   A callback used for generating default options of the factory
+   * @param array $opts
+   *   An array containing the default options for the factory
    */
-  public static function define($type, $name, $opt_cb) {
-    self::$definitions[$name] = array('type' => $type, 'opt_cb' => $opt_cb);
+  public static function define($type, $name, $opts) {
+    self::$definitions[$name] = array('type' => $type, 'opts' => $opts);
   }
 
   /**
@@ -50,9 +50,15 @@ class Factory {
       throw new Exception("There is no factory definition called {$name}.");
     }
 
-    $generator = self::$definitions[$name]['opt_cb'];
+    $default_options = self::$definitions[$name]['opts'];
 
-    return $generator();
+    foreach ($default_options as $name => $opt) {
+      if (is_callable($opt)) {
+        $default_options[$name] = $opt();
+      }
+    }
+
+    return $default_options;
   }
 
   /**

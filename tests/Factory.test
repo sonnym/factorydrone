@@ -34,13 +34,15 @@ class FactoryTest extends PhactoryDroneTestCase {
 
     foreach ($definitions as $definition) {
       $this->assert(isset($definition['type']));
-      $this->assert(isset($definition['opt_cb']));
+      $this->assert(isset($definition['opts']));
     }
   }
 
   public function testCanGetDefaultOptionsForAGivenFactory() {
     $default_options = Factory::get_default_options('factory');
     $this->assert(is_array($default_options));
+    $this->assertEqual($default_options['foo'], 'bar');
+    $this->assertEqual($default_options['sequence'], 'sequence 0');
   }
 
   public function testFactoryThrowsWhenAttemptingToAccessNonexistentFactory() {
