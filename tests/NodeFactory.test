@@ -1,0 +1,22 @@
+<?php
+module_load_include('inc', 'phactorydrone', 'tests/PhactoryDroneTestCase');
+
+class NodeFactoryTest extends PhactoryDroneTestCase {
+  public static function getInfo() {
+    return array(
+      'name' => 'NodeFactory unit tests',
+      'description' => 'Test the methods on the NodeFactory class',
+      'group' => 'Phactory Drone',
+    );
+  }
+
+  public function setUp() {
+    $this->load_factory_definitions();
+    parent::setUp();
+  }
+
+  public function testNodeFactoryCreate() {
+    $node = NodeFactory::create('node');
+    $this->assertNotNull($node->nid);
+  }
+}
