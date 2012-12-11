@@ -1,0 +1,22 @@
+<?php
+module_load_include('inc', 'phactorydrone', 'tests/PhactoryDroneTestCase');
+
+class ContentTypeFactoryTest extends PhactoryDroneTestCase {
+  public static function getInfo() {
+    return array(
+      'name' => 'ContentTypeFactory unit tests',
+      'description' => 'Test the methods on the ContentTypeFactory class',
+      'group' => 'Phactory Drone',
+    );
+  }
+
+  public function setUp() {
+    $this->load_factory_definitions();
+    parent::setUp();
+  }
+
+  public function testContentTypeCreate() {
+    $content_type = ContentTypeFactory::create('content type');
+    $this->assert(in_array($content_type->name, node_type_get_names()));
+  }
+}
