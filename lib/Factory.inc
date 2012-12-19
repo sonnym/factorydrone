@@ -45,10 +45,10 @@ class Factory {
    *   The name of the factory to generate
    *
    * @param array $opts
-   *   An associative array with options for the node
+   *   An associative array with options for the factory
    *
-   * @return stdClass
-   *   The new content type
+   * @return object
+   *   The newly created factory object
    */
   public static function create($name, $opts = array()) {
     $factory_object = (object) array_merge(Factory::get_default_options($name), $opts);
