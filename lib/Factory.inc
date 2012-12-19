@@ -67,6 +67,8 @@ class Factory {
       case 'node':
         node_save($factory_object);
         break;
+      default:
+        throw new Exception("Factories of type '{$factory_type}' are not supported.");
     }
 
     return $factory_object;

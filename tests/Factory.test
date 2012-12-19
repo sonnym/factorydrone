@@ -50,4 +50,10 @@ class FactoryTest extends PhactoryDroneTestCase {
       Factory::get_default_options('nonexistent');
     });
   }
+
+  public function testFactoryThrowsWhenAttemptingToCreateAnUnknownType() {
+    $this->assertThrows("Factories of type 'undefined type' are not supported.", function() {
+      Factory::create('undefined type');
+    });
+  }
 }
