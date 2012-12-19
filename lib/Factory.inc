@@ -37,6 +37,42 @@ class Factory {
   }
 
   /**
+   * A method for creating objects from factory definitions
+   *
+   * The object is created with the supplied options, persisted, and returned to the caller.
+   *
+   * @param string $name
+   *   The name of the factory to generate
+   *
+   * @param array $opts
+   *   An associative array with options for the node
+   *
+   * @return stdClass
+   *   The new content type
+   */
+  public static function create($name, $opts = array()) {
+    $factory_object = (object) array_merge(Factory::get_default_options($name), $opts);
+    $factory_type = self::$definitions[$name]['type'];
+
+    switch ($factory_type) {
+      case 'vocabulary':
+        taxonomy_vocabulary_save($factory_object);
+        break;
+      case 'term':
+        taxonomy_term_save($factory_object);
+        break;
+      case 'content type':
+        node_type_save($factory_object);
+        break;
+      case 'node':
+        node_save($factory_object);
+        break;
+    }
+
+    return $factory_object;
+  }
+
+  /**
    * Returns the default options generated for a given factory
    *
    * @param string name
@@ -45,7 +81,7 @@ class Factory {
    * @return array
    *   The generated options
    */
-  public static function get_default_options($name) {
+  public  static function get_default_options($name) {
     if (!isset(self::$definitions[$name])) {
       throw new Exception("There is no factory definition called {$name}.");
     }

@@ -16,7 +16,7 @@ class NodeFactoryTest extends PhactoryDroneTestCase {
   }
 
   public function testNodeFactoryCreate() {
-    $node = NodeFactory::create('node');
+    $node = Factory::create('node');
     $this->assertNotNull($node->nid);
   }
 }

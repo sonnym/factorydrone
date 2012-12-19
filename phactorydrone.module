@@ -5,8 +5,3 @@
  */
 
 module_load_include('inc', 'phactorydrone', 'lib/Factory');
-
-module_load_include('inc', 'phactorydrone', 'lib/VocabularyFactory');
-module_load_include('inc', 'phactorydrone', 'lib/TermFactory');
-module_load_include('inc', 'phactorydrone', 'lib/ContentTypeFactory');
-module_load_include('inc', 'phactorydrone', 'lib/NodeFactory');

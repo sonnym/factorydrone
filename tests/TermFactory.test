@@ -16,9 +16,9 @@ class TermFactoryTest extends PhactoryDroneTestCase {
   }
 
   public function testTermFactoryCreate() {
-    $vocabulary = VocabularyFactory::create('vocab');
+    $vocabulary = Factory::create('vocab');
 
-    $term = TermFactory::create('term', array('vid' => $vocabulary->vid));
+    $term = Factory::create('term', array('vid' => $vocabulary->vid));
     $this->assertNotNull($term->tid);
 
     $tree = taxonomy_get_tree($vocabulary->vid);

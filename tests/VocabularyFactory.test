@@ -16,7 +16,7 @@ class VocabularyFactoryTest extends PhactoryDroneTestCase {
   }
 
   public function testVocabularyFactoryWithDefaultOptions() {
-    $vocabulary = VocabularyFactory::create('vocab');
+    $vocabulary = Factory::create('vocab');
     $this->assertNotNull($vocabulary->vid);
     $this->assertequal($vocabulary->name, 'vocabulary_name0');
     $this->assertequal($vocabulary->machine_name, 'vocabulary_machine_name0');
@@ -24,7 +24,7 @@ class VocabularyFactoryTest extends PhactoryDroneTestCase {
   }
 
   public function testVocabularyFactoryCreateWithOverridenOptions() {
-    $vocabulary = VocabularyFactory::create('vocab', array('name' => 'Test Vocabulary',
+    $vocabulary = Factory::create('vocab', array('name' => 'Test Vocabulary',
                                                            'machine_name' => 'test_vocab',
                                                            'heirarchy' => 1,
                                                           ));
