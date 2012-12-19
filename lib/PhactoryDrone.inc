@@ -1,10 +1,10 @@
 <?php
 /**
  * @file
- * Contains Factory.
+ * Contains PhactoryDrone.
  */
 
-class Factory {
+class PhactoryDrone {
   /**
    * Paths from which to load factories
    */
@@ -19,7 +19,7 @@ class Factory {
    * A method of registering factory definitions
    *
    * A factory of type with name will be defined, allowing for calls to
-   * Factory::create to simply look up and produce standard objects
+   * PhactoryDrone::create to simply look up and produce standard objects
    *
    * @param string $type
    *   The type of the object to create, accepted values are:
@@ -51,7 +51,7 @@ class Factory {
    *   The newly created factory object
    */
   public static function create($name, $opts = array()) {
-    $factory_object = (object) array_merge(Factory::get_default_options($name), $opts);
+    $factory_object = (object) array_merge(PhactoryDrone::get_default_options($name), $opts);
     $factory_type = self::$definitions[$name]['type'];
 
     switch ($factory_type) {

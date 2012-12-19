@@ -15,8 +15,8 @@ Factories are a way of creating data based on a template. Configuring your test 
 The above steps can be accomplished wherever it is most fitting to do so. The following code snippet is an example of the methods to do so.
 
 ```php
-Factory::add_factory_path(join(DIRECTORY_SEPARATOR, array(dirname(__FILE__), 'factories')));
-Factory::load_definitions();
+PhactoryDrone::add_factory_path(join(DIRECTORY_SEPARATOR, array(dirname(__FILE__), 'factories')));
+PhactoryDrone::load_definitions();
 ```
 
 Phactory Drone can load factory definitions from multiple locations if necessary, simply by adding additional paths.
@@ -29,20 +29,20 @@ Factory definition files, which must have the extension `.php`, which have been 
   3. An array of options that will represent the default options for the factory
 
 ```php
-Factory::define('node', 'simple page', array(
-  'type' => ContentTypeFactory::create('page')->type,
-  'title' => Factory::sequence(function ($n) { return "node_title{$n}"; }),
+PhactoryDrone::define('node', 'simple page', array(
+  'type' => ContentTypePhactoryDrone::create('page')->type,
+  'title' => PhactoryDrone::sequence(function ($n) { return "node_title{$n}"; }),
 ));
 ```
 
 When using a factory, it is possible to override any of the options provided by the definition. Consequently, you always have control over the data at the time you create it. Using factories is similarly simply:
 
 ```php
-Factory::create('simple page');
+PhactoryDrone::create('simple page');
 ```
 
 or, to override options:
 
 ```php
-Factory::create('simple page', array('title' => 'Overridden Title'));
+PhactoryDrone::create('simple page', array('title' => 'Overridden Title'));
 ```

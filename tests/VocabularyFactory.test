@@ -1,11 +1,11 @@
 <?php
 module_load_include('inc', 'phactorydrone', 'tests/PhactoryDroneTestCase');
 
-class VocabularyFactoryTest extends PhactoryDroneTestCase {
+class VocabularyPhactoryDroneTest extends PhactoryDroneTestCase {
   public static function getInfo() {
     return array(
-      'name' => 'VocabularyFactory unit tests',
-      'description' => 'Test the methods on the VocabularyFactory class',
+      'name' => 'VocabularyPhactoryDrone unit tests',
+      'description' => 'Test the methods on the VocabularyPhactoryDrone class',
       'group' => 'Phactory Drone',
     );
   }
@@ -15,16 +15,16 @@ class VocabularyFactoryTest extends PhactoryDroneTestCase {
     parent::setUp('taxonomy');
   }
 
-  public function testVocabularyFactoryWithDefaultOptions() {
-    $vocabulary = Factory::create('vocab');
+  public function testVocabularyPhactoryDroneWithDefaultOptions() {
+    $vocabulary = PhactoryDrone::create('vocab');
     $this->assertNotNull($vocabulary->vid);
     $this->assertequal($vocabulary->name, 'vocabulary_name0');
     $this->assertequal($vocabulary->machine_name, 'vocabulary_machine_name0');
     $this->assertequal($vocabulary->heirarchy, 0);
   }
 
-  public function testVocabularyFactoryCreateWithOverridenOptions() {
-    $vocabulary = Factory::create('vocab', array('name' => 'Test Vocabulary',
+  public function testVocabularyPhactoryDroneCreateWithOverridenOptions() {
+    $vocabulary = PhactoryDrone::create('vocab', array('name' => 'Test Vocabulary',
                                                            'machine_name' => 'test_vocab',
                                                            'heirarchy' => 1,
                                                           ));

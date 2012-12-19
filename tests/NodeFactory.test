@@ -1,11 +1,11 @@
 <?php
 module_load_include('inc', 'phactorydrone', 'tests/PhactoryDroneTestCase');
 
-class NodeFactoryTest extends PhactoryDroneTestCase {
+class NodePhactoryDroneTest extends PhactoryDroneTestCase {
   public static function getInfo() {
     return array(
-      'name' => 'NodeFactory unit tests',
-      'description' => 'Test the methods on the NodeFactory class',
+      'name' => 'NodePhactoryDrone unit tests',
+      'description' => 'Test the methods on the NodePhactoryDrone class',
       'group' => 'Phactory Drone',
     );
   }
@@ -15,8 +15,8 @@ class NodeFactoryTest extends PhactoryDroneTestCase {
     parent::setUp();
   }
 
-  public function testNodeFactoryCreate() {
-    $node = Factory::create('node');
+  public function testNodePhactoryDroneCreate() {
+    $node = PhactoryDrone::create('node');
     $this->assertNotNull($node->nid);
   }
 }

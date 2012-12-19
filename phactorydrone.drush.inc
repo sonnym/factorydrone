@@ -43,7 +43,7 @@ function drush_phactorydrone_vocabulary_create($name, $machine_name, $hierarchy)
                 'hierarchy' => $hierarchy,
                );
 
-  $vocabulary = VocabularyFactory::create($opts);
+  $vocabulary = VocabularyPhactoryDrone::create($opts);
 
   print "Created vocabulary with vid {$vocabulary->vid}.\n";
 }
@@ -54,7 +54,7 @@ function drush_phactorydrone_vocabulary_create($name, $machine_name, $hierarchy)
 function drush_phactorydrone_term_create($machine_name, $term) {
   $opts = array('name' => $term);
 
-  $term = TermFactory::create($machine_name, $opts);
+  $term = TermPhactoryDrone::create($machine_name, $opts);
   
   print "Created term with tid {$term->tid}.\n";
 }

@@ -1,11 +1,11 @@
 <?php
 module_load_include('inc', 'phactorydrone', 'tests/PhactoryDroneTestCase');
 
-class ContentTypeFactoryTest extends PhactoryDroneTestCase {
+class ContentTypePhactoryDroneTest extends PhactoryDroneTestCase {
   public static function getInfo() {
     return array(
-      'name' => 'ContentTypeFactory unit tests',
-      'description' => 'Test the methods on the ContentTypeFactory class',
+      'name' => 'ContentTypePhactoryDrone unit tests',
+      'description' => 'Test the methods on the ContentTypePhactoryDrone class',
       'group' => 'Phactory Drone',
     );
   }
@@ -16,7 +16,7 @@ class ContentTypeFactoryTest extends PhactoryDroneTestCase {
   }
 
   public function testContentTypeCreate() {
-    $content_type = Factory::create('content type');
+    $content_type = PhactoryDrone::create('content type');
     $this->assert(in_array($content_type->name, node_type_get_names()));
   }
 }

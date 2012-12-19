@@ -1,11 +1,11 @@
 <?php
 module_load_include('inc', 'phactorydrone', 'tests/PhactoryDroneTestCase');
 
-class TermFactoryTest extends PhactoryDroneTestCase {
+class TermPhactoryDroneTest extends PhactoryDroneTestCase {
   public static function getInfo() {
     return array(
-      'name' => 'TermFactory unit tests',
-      'description' => 'Test the methods on the TermFactory class',
+      'name' => 'TermPhactoryDrone unit tests',
+      'description' => 'Test the methods on the TermPhactoryDrone class',
       'group' => 'Phactory Drone',
     );
   }
@@ -15,10 +15,10 @@ class TermFactoryTest extends PhactoryDroneTestCase {
     parent::setUp('taxonomy');
   }
 
-  public function testTermFactoryCreate() {
-    $vocabulary = Factory::create('vocab');
+  public function testTermPhactoryDroneCreate() {
+    $vocabulary = PhactoryDrone::create('vocab');
 
-    $term = Factory::create('term', array('vid' => $vocabulary->vid));
+    $term = PhactoryDrone::create('term', array('vid' => $vocabulary->vid));
     $this->assertNotNull($term->tid);
 
     $tree = taxonomy_get_tree($vocabulary->vid);

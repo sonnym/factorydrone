@@ -6,7 +6,7 @@ core = 7.x
 hidden = TRUE
 
 ; register test files
-files[] = tests/Factory.test
+files[] = tests/PhactoryDrone.test
 files[] = tests/ContentTypeFactory.test
 files[] = tests/NodeFactory.test
 files[] = tests/TermFactory.test

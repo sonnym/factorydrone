@@ -4,4 +4,4 @@
  * Automatically load all factory classes
  */
 
-module_load_include('inc', 'phactorydrone', 'lib/Factory');
+module_load_include('inc', 'phactorydrone', 'lib/PhactoryDrone');
