@@ -83,7 +83,7 @@ class PhactoryDrone {
    * @return array
    *   The generated options
    */
-  public  static function get_default_options($name) {
+  public static function get_default_options($name) {
     if (!isset(self::$definitions[$name])) {
       throw new Exception("There is no factory definition called {$name}.");
     }
