@@ -52,7 +52,7 @@ class PhactoryDrone {
    */
   public static function create($name, $opts = array()) {
     $factory_object = (object) array_merge(PhactoryDrone::get_default_options($name), $opts);
-    $factory_type = self::$definitions[$name]['type'];
+    $factory_type = self::get_type($name);
 
     switch ($factory_type) {
       case 'vocabulary':
@@ -97,6 +97,19 @@ class PhactoryDrone {
     }
 
     return $default_options;
+  }
+
+  /**
+   * Returns the factory type for a given definition
+   *
+   * @param string $name
+   *   The name of the defintiion
+   *
+   * @return string
+   *   The type of the factory
+   */
+  public static function get_type($name) {
+    return self::$definitions[$name]['type'];
   }
 
   /**

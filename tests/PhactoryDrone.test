@@ -45,6 +45,14 @@ class PhactoryDroneTest extends PhactoryDroneTestCase {
     $this->assertEqual($default_options['sequence'], 'sequence 0');
   }
 
+  public function testGetTypeForAGivenFactory() {
+    $type = PhactoryDrone::get_type('factory');
+    $this->assertEqual($type, '');
+
+    $type = PhactoryDrone::get_type('content type');
+    $this->assertEqual($type, 'content type');
+  }
+
   public function testPhactoryDroneThrowsWhenAttemptingToAccessNonexistentPhactoryDrone() {
     $this->assertThrows('There is no factory definition called nonexistent.', function() {
       PhactoryDrone::get_default_options('nonexistent');
