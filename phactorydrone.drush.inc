@@ -10,51 +10,71 @@
 function phactorydrone_drush_command() {
   $items = array();
 
-  $items['vocabulary-create'] = array(
-    'description' => dt('Create and persist a taxonomy vocabulary.'),
+  $items['phactorydrone-create'] = array(
+    'description' => dt('Create and persist a new factory object.'),
     'arguments' => array(
-      'name' => dt('The human-readable name of the vocabulary.'),
-      'machine name' => dt('The machine name of the vocabulary.'),
-      'hierarchy' => dt('The hierarchy level of the vocabulary.'),
+      'name' => dt('The name of the factory on which to base the new object.'),
+      'key=value...' => dt('Any additional options you want to pass to the factory for overriding defaults.'),
     ),
-    'required-arguments' => 3,
-    'aliases' => array('fvc'),
-  );
-
-  $items['term-create'] = array(
-    'description' => dt('Create and persist a taxonomy term.'),
-    'arguments' => array(
-      'vocabulary name' => dt('The machine name of the vocabulary in which to create the term'),
-      'name' => dt('The name of the term.'),
+    'options' => array(
+      'porcelain' => dt('Print output in format intended for script consumption.'),
+      'factory_path' => array(
+        'description' => dt('Path to load factories from (multiple values allowed)'),
+        'value' => 'required',
+      ),
     ),
-    'required-arguments' => 2,
-    'aliases' => array('ftc'),
+    'required-arguments' => 1,
+    'aliases' => array('pd-create', 'pdc'),
+    'bootstrap' => DRUSH_BOOTSTRAP_DRUPAL_DATABASE,
   );
 
   return $items;
 }
 
 /**
- *  Command callback. Create a new taxonomy vocabulary
+ *  Command callback. Create a new object
  */
-function drush_phactorydrone_vocabulary_create($name, $machine_name, $hierarchy) {
-  $opts = array('name' => $name,
-                'machine_name' => $machine_name,
-                'hierarchy' => $hierarchy,
-               );
+function drush_phactorydrone_create($name = NULL) {
+  if ($factory_path = drush_get_option('factory_path')) {
+    PhactoryDrone::add_factory_path($factory_path);
+    PhactoryDrone::load_definitions();
+  }
 
-  $vocabulary = VocabularyPhactoryDrone::create($opts);
+  $object = call_user_func_array('_drush_factorydrone_create', func_get_args());
 
-  print "Created vocabulary with vid {$vocabulary->vid}.\n";
+  if (drush_get_option('porcelain')) {
+    print serialize($object);
+  } else {
+    print "Created new object.\n";
+    print_r($object);
+    print "\n";
+  }
 }
 
 /**
- *  Command callback. Create a new taxonomy term.
+ * Function for creating an object
+ *
+ * @param string $name
+ *   The name of the factory template to use
+ *
+ * @param string $options...
+ *   (optional) Additional options to override the factory template, in the form key=value
+ *
+ * @return object
+ *   The newly created object
  */
-function drush_phactorydrone_term_create($machine_name, $term) {
-  $opts = array('name' => $term);
+function _drush_factorydrone_create($name = NULL) {
+  $args = func_get_args();
+  $factory_options = array();
 
-  $term = TermPhactoryDrone::create($machine_name, $opts);
-  
-  print "Created term with tid {$term->tid}.\n";
+  if ($args) {
+    $name = array_shift($args);
+    
+    foreach ($args as $arg) {
+      list($key, $value) = explode('=', $arg);
+      $factory_options[$key] = $value;
+    }
+  }
+
+  return PhactoryDrone::create($name, $factory_options);
 }
