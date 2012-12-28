@@ -24,7 +24,7 @@ class FactoryDroneTest extends FactoryDroneTestCase {
 
   public function testFactoryDroneThrowsWhenAddingFileToFactoryDronePaths() {
     $this->assertThrows('$path must be a directory.', function () {
-      FactoryDrone::add_factory_path(__FILE__);
+      FactoryDrone::addFactoryPath(__FILE__);
     });
   }
 
@@ -39,23 +39,23 @@ class FactoryDroneTest extends FactoryDroneTestCase {
   }
 
   public function testCanGetDefaultOptionsForAGivenFactoryDrone() {
-    $default_options = FactoryDrone::get_default_options('factory');
+    $default_options = FactoryDrone::getDefaultOptions('factory');
     $this->assert(is_array($default_options));
     $this->assertEqual($default_options['foo'], 'bar');
     $this->assertEqual($default_options['sequence'], 'sequence 0');
   }
 
   public function testGetTypeForAGivenFactory() {
-    $type = FactoryDrone::get_type('factory');
+    $type = FactoryDrone::getType('factory');
     $this->assertEqual($type, '');
 
-    $type = FactoryDrone::get_type('content type');
+    $type = FactoryDrone::getType('content type');
     $this->assertEqual($type, 'content type');
   }
 
   public function testFactoryDroneThrowsWhenAttemptingToAccessNonexistentFactoryDrone() {
     $this->assertThrows('There is no factory definition called nonexistent.', function() {
-      FactoryDrone::get_default_options('nonexistent');
+      FactoryDrone::getDefaultOptions('nonexistent');
     });
   }
 

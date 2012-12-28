@@ -32,19 +32,20 @@ function factorydrone_drush_command() {
 }
 
 /**
- *  Command callback. Create a new object
+ *  Command callback. Create a new object.
  */
 function drush_factorydrone_create($name = NULL) {
   if ($factory_path = drush_get_option('factory_path')) {
-    FactoryDrone::add_factory_path($factory_path);
-    FactoryDrone::load_definitions();
+    FactoryDrone::addFactoryPath($factory_path);
+    FactoryDrone::loadDefinitions();
   }
 
   $object = call_user_func_array('_drush_factorydrone_create', func_get_args());
 
   if (drush_get_option('porcelain')) {
     print serialize($object);
-  } else {
+  }
+  else {
     print "Created new object.\n";
     print_r($object);
     print "\n";
@@ -52,13 +53,13 @@ function drush_factorydrone_create($name = NULL) {
 }
 
 /**
- * Function for creating an object
+ * Function for creating an object.
+ *
+ * This function is passed arbitrary additional arguments in the form key=value,
+ * which are passed in by drush at command invocation
  *
  * @param string $name
  *   The name of the factory template to use
- *
- * @param string $options...
- *   (optional) Additional options to override the factory template, in the form key=value
  *
  * @return object
  *   The newly created object
@@ -69,7 +70,7 @@ function _drush_factorydrone_create($name = NULL) {
 
   if ($args) {
     $name = array_shift($args);
-    
+
     foreach ($args as $arg) {
       list($key, $value) = explode('=', $arg);
       $factory_options[$key] = $value;

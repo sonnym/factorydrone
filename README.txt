@@ -25,9 +25,9 @@ environment to use Factory Drone factories is as easy as:
 The above steps can be accomplished wherever it is most fitting to do so. The
 following code snippet is an example of the methods to do so.
 
-    FactoryDrone::add_factory_path(join(DIRECTORY_SEPARATOR,
+    FactoryDrone::addFactoryPath(join(DIRECTORY_SEPARATOR,
     						       array(dirname(__FILE__), 'factories')));
-    FactoryDrone::load_definitions();
+    FactoryDrone::loadDefinitions();
 
 Factory Drone can load factory definitions from multiple locations if necessary,
 simply by adding additional paths.

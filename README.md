@@ -15,8 +15,8 @@ Factories are a way of creating data based on a template. Configuring your test 
 The above steps can be accomplished wherever it is most fitting to do so. The following code snippet is an example of the methods to do so.
 
 ```php
-FactoryDrone::add_factory_path(join(DIRECTORY_SEPARATOR, array(dirname(__FILE__), 'factories')));
-FactoryDrone::load_definitions();
+FactoryDrone::addFactoryPath(join(DIRECTORY_SEPARATOR, array(dirname(__FILE__), 'factories')));
+FactoryDrone::loadDefinitions();
 ```
 
 Factory Drone can load factory definitions from multiple locations if necessary, simply by adding additional paths.

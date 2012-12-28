@@ -5,8 +5,8 @@ class FactoryDroneTestCase extends DrupalWebTestCase {
   }
 
   protected function load_factory_definitions() {
-    FactoryDrone::add_factory_path($this->factory_path);
-    FactoryDrone::load_definitions();
+    FactoryDrone::addFactoryPath($this->factory_path);
+    FactoryDrone::loadDefinitions();
   }
 
   protected function assertThrows($message, $cb) {

@@ -8,15 +8,15 @@ class FactoryDrone {
   /**
    * Paths from which to load factories
    */
-  private static $factory_paths = array();
+  protected static $factoryPaths = array();
 
   /**
    * The factory definitions
    */
-  private static $definitions = array();
+  protected static $definitions = array();
 
-  /** 
-   * A method of registering factory definitions
+  /**
+   * A method of registering factory definitions.
    *
    * A factory of type with name will be defined, allowing for calls to
    * FactoryDrone::create to simply look up and produce standard objects
@@ -37,7 +37,7 @@ class FactoryDrone {
   }
 
   /**
-   * A method for creating objects from factory definitions
+   * A method for creating objects from factory definitions.
    *
    * The object is created with the supplied options, persisted, and returned to the caller.
    *
@@ -51,22 +51,26 @@ class FactoryDrone {
    *   The newly created factory object
    */
   public static function create($name, $opts = array()) {
-    $factory_object = (object) array_merge(FactoryDrone::get_default_options($name), $opts);
-    $factory_type = self::get_type($name);
+    $factory_object = (object) array_merge(FactoryDrone::getDefaultOptions($name), $opts);
+    $factory_type = self::getType($name);
 
     switch ($factory_type) {
       case 'vocabulary':
         taxonomy_vocabulary_save($factory_object);
         break;
+
       case 'term':
         taxonomy_term_save($factory_object);
         break;
+
       case 'content type':
         node_type_save($factory_object);
         break;
+
       case 'node':
         node_save($factory_object);
         break;
+
       default:
         throw new Exception("Factories of type '{$factory_type}' are not supported.");
     }
@@ -75,15 +79,15 @@ class FactoryDrone {
   }
 
   /**
-   * Returns the default options generated for a given factory
+   * Returns the default options generated for a given factory.
    *
-   * @param string name
+   * @param string $name
    *   The name of the factory options being fetched
    *
    * @return array
    *   The generated options
    */
-  public static function get_default_options($name) {
+  public static function getDefaultOptions($name) {
     if (!isset(self::$definitions[$name])) {
       throw new Exception("There is no factory definition called {$name}.");
     }
@@ -100,7 +104,7 @@ class FactoryDrone {
   }
 
   /**
-   * Returns the factory type for a given definition
+   * Returns the factory type for a given definition.
    *
    * @param string $name
    *   The name of the defintiion
@@ -108,12 +112,12 @@ class FactoryDrone {
    * @return string
    *   The type of the factory
    */
-  public static function get_type($name) {
+  public static function getType($name) {
     return self::$definitions[$name]['type'];
   }
 
   /**
-   * Creates a sequence to assist with uniqueness constraints
+   * Creates a sequence to assist with uniqueness constraints.
    *
    * @param Closure $generator
    *   The methos is passed a single numerical argument that increments on each call
@@ -127,26 +131,26 @@ class FactoryDrone {
   }
 
   /**
-   * Adds a new search path for factories
+   * Adds a new search path for factories.
    *
    * @param string $path
    *   The path containing factory definitions
    */
-  public static function add_factory_path($path) {
+  public static function addFactoryPath($path) {
     $realpath = realpath($path);
 
     if (!is_dir($realpath)) {
       throw new Exception('$path must be a directory.');
     }
 
-    self::$factory_paths[] = $realpath;
+    self::$factoryPaths[] = $realpath;
   }
 
   /**
-   * This method loads and stores all factory definitions
+   * This method loads and stores all factory definitions.
    */
-  public static function load_definitions() {
-    foreach (self::$factory_paths as $path) {
+  public static function loadDefinitions() {
+    foreach (self::$factoryPaths as $path) {
       if ($handle = opendir($path)) {
         while (FALSE !== ($file = readdir($handle))) {
           if (substr($file, -4) == '.php') {
@@ -158,7 +162,7 @@ class FactoryDrone {
   }
 
   /**
-   * A method for inspecting currently defined factories
+   * A method for inspecting currently defined factories.
    *
    * @return array
    *   Array of factory definitions.
