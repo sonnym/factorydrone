@@ -39,7 +39,8 @@ class FactoryDrone {
   /**
    * A method for creating objects from factory definitions.
    *
-   * The object is created with the supplied options, persisted, and returned to the caller.
+   * The object is created with the supplied options, persisted,
+   * and returned to the caller.
    *
    * @param string $name
    *   The name of the factory to generate
@@ -120,7 +121,8 @@ class FactoryDrone {
    * Creates a sequence to assist with uniqueness constraints.
    *
    * @param Closure $generator
-   *   The methos is passed a single numerical argument that increments on each call
+   *   The method is passed a single numerical argument
+   *   that increments on each call
    */
   public static function sequence(Closure $generator) {
     $accumulator = 0;
@@ -167,7 +169,7 @@ class FactoryDrone {
    * @return array
    *   Array of factory definitions.
    */
-  public static function get_definitions() {
+  public static function getDefinitions() {
     return self::$definitions;
   }
 }

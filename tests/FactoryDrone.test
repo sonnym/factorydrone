@@ -30,7 +30,7 @@ class FactoryDroneTest extends FactoryDroneTestCase {
 
   public function testFactoryDroneCanLoadDefinitions() {
     $this->load_factory_definitions();
-    $definitions = FactoryDrone::get_definitions();
+    $definitions = FactoryDrone::getDefinitions();
 
     foreach ($definitions as $definition) {
       $this->assert(isset($definition['type']));
