@@ -1,12 +1,12 @@
 <?php
-class PhactoryDroneTestCase extends DrupalWebTestCase {
+class FactoryDroneTestCase extends DrupalWebTestCase {
   public function setUp($modules = array()) {
     parent::setUp($modules);
   }
 
   protected function load_factory_definitions() {
-    PhactoryDrone::add_factory_path($this->factory_path);
-    PhactoryDrone::load_definitions();
+    FactoryDrone::add_factory_path($this->factory_path);
+    FactoryDrone::load_definitions();
   }
 
   protected function assertThrows($message, $cb) {

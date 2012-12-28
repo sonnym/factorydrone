@@ -1,16 +1,16 @@
 <?php
 /**
  * @file
- * Drush integration for the phactorydrone module
+ * Drush integration for the factorydrone module
  */
 
 /**
  * Implments hook_drush_command().
  */
-function phactorydrone_drush_command() {
+function factorydrone_drush_command() {
   $items = array();
 
-  $items['phactorydrone-create'] = array(
+  $items['factorydrone-create'] = array(
     'description' => dt('Create and persist a new factory object.'),
     'arguments' => array(
       'name' => dt('The name of the factory on which to base the new object.'),
@@ -34,10 +34,10 @@ function phactorydrone_drush_command() {
 /**
  *  Command callback. Create a new object
  */
-function drush_phactorydrone_create($name = NULL) {
+function drush_factorydrone_create($name = NULL) {
   if ($factory_path = drush_get_option('factory_path')) {
-    PhactoryDrone::add_factory_path($factory_path);
-    PhactoryDrone::load_definitions();
+    FactoryDrone::add_factory_path($factory_path);
+    FactoryDrone::load_definitions();
   }
 
   $object = call_user_func_array('_drush_factorydrone_create', func_get_args());
@@ -76,5 +76,5 @@ function _drush_factorydrone_create($name = NULL) {
     }
   }
 
-  return PhactoryDrone::create($name, $factory_options);
+  return FactoryDrone::create($name, $factory_options);
 }

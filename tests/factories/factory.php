@@ -1,5 +1,5 @@
 <?php
-PhactoryDrone::define('', 'factory', array(
+FactoryDrone::define('', 'factory', array(
   'foo' => 'bar',
-  'sequence' => PhactoryDrone::sequence(function ($n) { return "sequence {$n}"; }),
+  'sequence' => FactoryDrone::sequence(function ($n) { return "sequence {$n}"; }),
 ));

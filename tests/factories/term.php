@@ -1,4 +1,4 @@
 <?php
-PhactoryDrone::define('term', 'term', array(
-  'name' => PhactoryDrone::sequence(function ($n) { return "term_name{$n}"; }),
+FactoryDrone::define('term', 'term', array(
+  'name' => FactoryDrone::sequence(function ($n) { return "term_name{$n}"; }),
 ));

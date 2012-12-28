@@ -1,4 +1,4 @@
-name = Phactory Drone
+name = Factory Drone
 description = A simple way to create content for use in tests
 package = Development
 core = 7.x
@@ -6,9 +6,9 @@ core = 7.x
 hidden = TRUE
 
 ; register test files
-files[] = tests/PhactoryDrone.test
+files[] = tests/FactoryDrone.test
 files[] = tests/ContentTypeFactory.test
 files[] = tests/NodeFactory.test
 files[] = tests/TermFactory.test
 files[] = tests/VocabularyFactory.test
-files[] = tests/PhactoryDroneDrushIntegration.test
+files[] = tests/FactoryDroneDrushIntegration.test

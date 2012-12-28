@@ -1,30 +1,30 @@
 <?php
-module_load_include('inc', 'phactorydrone', 'tests/PhactoryDroneTestCase');
-module_load_include('inc', 'phactorydrone', 'phactorydrone.drush');
+module_load_include('inc', 'factorydrone', 'tests/FactoryDroneTestCase');
+module_load_include('inc', 'factorydrone', 'factorydrone.drush');
 
-class PhactoryDroneDrushIntegrationTest extends PhactoryDroneTestCase {
+class FactoryDroneDrushIntegrationTest extends FactoryDroneTestCase {
   public static function getInfo() {
     return array(
       'name' => 'Drush integration unit tests',
       'description' => 'Test the methods for integrating with drush',
-      'group' => 'Phactory Drone',
+      'group' => 'Factory Drone',
     );
   }
 
-  public function testDrushPhactoryDroneCreateInternals() {
+  public function testDrushFactoryDroneCreateInternals() {
     $this->load_factory_definitions();
 
     $node = _drush_factorydrone_create('node');
     $this->assertNotNull($node->nid);
   }
 
-  public function testDrushPhactoryDroneCreateExternalsWithPorcelain() {
+  public function testDrushFactoryDroneCreateExternalsWithPorcelain() {
     $command_output = `drush pd-create 'node' --porcelain --factory_path='{$this->factory_path}'`;
     $node = unserialize($command_output);
     $this->assertNotNull($node->nid);
   }
 
-  public function testDrushPhactoryDroneCreateExternals() {
+  public function testDrushFactoryDroneCreateExternals() {
     $command_output = `drush pd-create 'node' --factory_path='{$this->factory_path}'`;
     $this->assertNotNull($command_output);
   }

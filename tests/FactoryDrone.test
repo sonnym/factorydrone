@@ -1,0 +1,67 @@
+<?php
+module_load_include('inc', 'factorydrone', 'tests/FactoryDroneTestCase');
+
+class FactoryDroneTest extends FactoryDroneTestCase {
+  public static function getInfo() {
+    return array(
+      'name' => 'FactoryDrone unit tests',
+      'description' => 'Test the methods on the FactoryDrone class',
+      'group' => 'Factory Drone',
+    );
+  }
+
+  public function testFactoryDroneCanCreateSequenceCallbacks() {
+    $sequence = FactoryDrone::sequence(function ($n) { return $n; });
+    $this->assertEqual(0, $sequence());
+    $this->assertEqual(1, $sequence());
+    $this->assertEqual(2, $sequence());
+  }
+
+  public function testFactoryDroneSequenceInterpolates() {
+    $sequence = FactoryDrone::sequence(function ($n) { return "sequence {$n}"; });
+    $this->assertEqual('sequence 0', $sequence());
+  }
+
+  public function testFactoryDroneThrowsWhenAddingFileToFactoryDronePaths() {
+    $this->assertThrows('$path must be a directory.', function () {
+      FactoryDrone::add_factory_path(__FILE__);
+    });
+  }
+
+  public function testFactoryDroneCanLoadDefinitions() {
+    $this->load_factory_definitions();
+    $definitions = FactoryDrone::get_definitions();
+
+    foreach ($definitions as $definition) {
+      $this->assert(isset($definition['type']));
+      $this->assert(isset($definition['opts']));
+    }
+  }
+
+  public function testCanGetDefaultOptionsForAGivenFactoryDrone() {
+    $default_options = FactoryDrone::get_default_options('factory');
+    $this->assert(is_array($default_options));
+    $this->assertEqual($default_options['foo'], 'bar');
+    $this->assertEqual($default_options['sequence'], 'sequence 0');
+  }
+
+  public function testGetTypeForAGivenFactory() {
+    $type = FactoryDrone::get_type('factory');
+    $this->assertEqual($type, '');
+
+    $type = FactoryDrone::get_type('content type');
+    $this->assertEqual($type, 'content type');
+  }
+
+  public function testFactoryDroneThrowsWhenAttemptingToAccessNonexistentFactoryDrone() {
+    $this->assertThrows('There is no factory definition called nonexistent.', function() {
+      FactoryDrone::get_default_options('nonexistent');
+    });
+  }
+
+  public function testFactoryDroneThrowsWhenAttemptingToCreateAnUnknownType() {
+    $this->assertThrows("Factories of type 'undefined type' are not supported.", function() {
+      FactoryDrone::create('undefined type');
+    });
+  }
+}

@@ -1,2 +1,2 @@
 <?php
-PhactoryDrone::define('undefined type', 'undefined type', array());
+FactoryDrone::define('undefined type', 'undefined type', array());
