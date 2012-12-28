@@ -155,7 +155,7 @@ class FactoryDrone {
     foreach (self::$factoryPaths as $path) {
       if ($handle = opendir($path)) {
         while (FALSE !== ($file = readdir($handle))) {
-          if (substr($file, -4) == '.php') {
+          if (drupal_substr($file, -4) == '.php') {
             require join(DIRECTORY_SEPARATOR, array($path, $file));
           }
         }
