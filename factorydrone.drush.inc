@@ -43,12 +43,11 @@ function drush_factorydrone_create($name = NULL) {
   $object = call_user_func_array('_drush_factorydrone_create', func_get_args());
 
   if (drush_get_option('porcelain')) {
-    print serialize($object);
+    drush_print(serialize($object));
   }
   else {
-    print "Created new object.\n";
-    print_r($object);
-    print "\n";
+    drush_print("Created new object.");
+    drush_print(print_r($object, TRUE));
   }
 }
 
