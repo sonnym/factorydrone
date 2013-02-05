@@ -6,6 +6,9 @@ core = 7.x
 
 hidden = TRUE
 
+; register includes
+files[] = lib/FactoryDrone.inc
+
 ; register test files
 files[] = tests/FactoryDrone.test
 files[] = tests/ContentTypeFactory.test
