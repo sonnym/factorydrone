@@ -64,6 +64,10 @@ class FactoryDrone {
         taxonomy_term_save($factory_object);
         break;
 
+      case 'role':
+        user_role_save($factory_object);
+        break;
+
       case 'content type':
         node_type_save($factory_object);
         break;
