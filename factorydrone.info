@@ -12,5 +12,6 @@ files[] = tests/ContentTypeFactory.test
 files[] = tests/NodeFactory.test
 files[] = tests/RoleFactory.test
 files[] = tests/TermFactory.test
+files[] = tests/UserFactory.test
 files[] = tests/VocabularyFactory.test
 files[] = tests/FactoryDroneDrushIntegration.test
