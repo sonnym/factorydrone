@@ -1,6 +1,7 @@
 name = Factory Drone
 description = A simple way to create content for use in tests
 package = Development
+php = 5.3
 core = 7.x
 
 hidden = TRUE
