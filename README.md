@@ -48,4 +48,4 @@ FactoryDrone::create('simple page', array('title' => 'Overridden Title'));
 ```
 
 ## Drush Integration
-Factory Drone provides integration with Drush to facilitate the use of factories even when a bootstrapped Drupal environment is not immediately available. Doing so is as simple as running a command such as the following `drush pd-create FACTORY_NAME optional_aguments=optional_values`.  Read `drush help pd-create` for more information.
+Factory Drone provides integration with Drush to facilitate the use of factories even when a bootstrapped Drupal environment is not immediately available. Doing so is as simple as running a command such as the following `drush fd-create FACTORY_NAME optional_aguments=optional_values`.  Read `drush help fd-create` for more information.

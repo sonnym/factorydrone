@@ -24,7 +24,7 @@ function factorydrone_drush_command() {
       ),
     ),
     'required-arguments' => 1,
-    'aliases' => array('pd-create', 'pdc'),
+    'aliases' => array('fd-create', 'pdc'),
     'bootstrap' => DRUSH_BOOTSTRAP_DRUPAL_DATABASE,
   );
 

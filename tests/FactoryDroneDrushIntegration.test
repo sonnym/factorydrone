@@ -19,13 +19,13 @@ class FactoryDroneDrushIntegrationTest extends FactoryDroneTestCase {
   }
 
   public function testDrushFactoryDroneCreateExternalsWithPorcelain() {
-    $command_output = `drush pd-create 'node' --porcelain --factory_path='{$this->factory_path}'`;
+    $command_output = `drush fd-create 'node' --porcelain --factory_path='{$this->factory_path}'`;
     $node = unserialize($command_output);
     $this->assertNotNull($node->nid);
   }
 
   public function testDrushFactoryDroneCreateExternals() {
-    $command_output = `drush pd-create 'node' --factory_path='{$this->factory_path}'`;
+    $command_output = `drush fd-create 'node' --factory_path='{$this->factory_path}'`;
     $this->assertNotNull($command_output);
   }
 }

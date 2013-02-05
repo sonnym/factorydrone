@@ -62,6 +62,6 @@ or, to override options:
 Factory Drone provides integration with Drush to facilitate the use of factories
 even when a bootstrapped Drupal environment is not immediately available. Doing
 so is as simple as running a command such as the following
-`drush pd-create FACTORY_NAME optional_aguments=optional_values`.
+`drush fd-create FACTORY_NAME optional_aguments=optional_values`.
 
-Read `drush help pd-create` for more information.
+Read `drush help fd-create` for more information.
