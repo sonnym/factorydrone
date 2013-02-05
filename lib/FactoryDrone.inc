@@ -37,6 +37,7 @@ class FactoryDrone {
    * @see http://api.drupal.org/api/drupal/developer%21globals.php/global/user/7
    * @see http://api.drupal.org/api/drupal/modules%21taxonomy%21taxonomy.module/function/taxonomy_term_save/7
    * @see http://api.drupal.org/api/drupal/modules%21taxonomy%21taxonomy.module/function/taxonomy_vocabulary_save/7
+   * @see http://api.drupal.org/api/drupal/modules!menu!menu.module/function/menu_save/7
    *
    */
   public static function define($type, $name, $opts) {
@@ -59,7 +60,8 @@ class FactoryDrone {
    *   The newly created factory object
    */
   public static function create($name, $opts = array()) {
-    $factory_object = (object) array_merge(FactoryDrone::getDefaultOptions($name), $opts);
+    $factory_array = array_merge(FactoryDrone::getDefaultOptions($name), $opts);
+    $factory_object = (object) $factory_array;
     $factory_type = self::getType($name);
 
     switch ($factory_type) {
@@ -85,6 +87,10 @@ class FactoryDrone {
 
       case 'node':
         node_save($factory_object);
+        break;
+
+      case 'menu':
+        menu_save($factory_array);
         break;
 
       default:
