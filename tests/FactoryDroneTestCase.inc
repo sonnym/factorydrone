@@ -1,4 +1,6 @@
 <?php
+module_load_include('inc', 'factorydrone', 'lib/FactoryDrone');
+
 class FactoryDroneTestCase extends DrupalWebTestCase {
   public function setUp($modules = array()) {
     parent::setUp($modules);
