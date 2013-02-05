@@ -1,0 +1,24 @@
+
+<?php
+module_load_include('inc', 'factorydrone', 'tests/FactoryDroneTestCase');
+
+class MenuLinkFactoryDroneTest extends FactoryDroneTestCase {
+  public static function getInfo() {
+    return array(
+      'name' => 'MenuLinkFactoryDrone unit tests',
+      'description' => 'Test ability to create new menu links',
+      'group' => 'Factory Drone',
+    );
+  }
+
+  public function setUp() {
+    $this->load_factory_definitions();
+    parent::setUp();
+  }
+
+  public function testMenuLinkCreate() {
+    $menu_link = FactoryDrone::create('menu link');
+    $this->assert(is_object($menu_link));
+    $this->assertNotNull($menu_link->mlid);
+  }
+}

@@ -10,6 +10,7 @@ hidden = TRUE
 files[] = tests/FactoryDrone.test
 files[] = tests/ContentTypeFactory.test
 files[] = tests/MenuFactory.test
+files[] = tests/MenuLinkFactory.test
 files[] = tests/NodeFactory.test
 files[] = tests/RoleFactory.test
 files[] = tests/TermFactory.test

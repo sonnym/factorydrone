@@ -38,7 +38,7 @@ class FactoryDrone {
    * @see http://api.drupal.org/api/drupal/modules%21taxonomy%21taxonomy.module/function/taxonomy_term_save/7
    * @see http://api.drupal.org/api/drupal/modules%21taxonomy%21taxonomy.module/function/taxonomy_vocabulary_save/7
    * @see http://api.drupal.org/api/drupal/modules!menu!menu.module/function/menu_save/7
-   *
+   * @see http://api.drupal.org/api/drupal/includes%21menu.inc/function/menu_link_save/7 
    */
   public static function define($type, $name, $opts) {
     self::$definitions[$name] = array('type' => $type, 'opts' => $opts);
@@ -91,6 +91,12 @@ class FactoryDrone {
 
       case 'menu':
         menu_save($factory_array);
+        break;
+
+      case 'menu link':
+        $mlid = menu_link_save($factory_array);
+        $factory_object->mlid = $mlid;
+        menu_cache_clear_all();
         break;
 
       default:
