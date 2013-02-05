@@ -18,9 +18,9 @@ class VocabularyFactoryDroneTest extends FactoryDroneTestCase {
   public function testVocabularyFactoryDroneWithDefaultOptions() {
     $vocabulary = FactoryDrone::create('vocab');
     $this->assertNotNull($vocabulary->vid);
-    $this->assertequal($vocabulary->name, 'vocabulary_name0');
-    $this->assertequal($vocabulary->machine_name, 'vocabulary_machine_name0');
-    $this->assertequal($vocabulary->heirarchy, 0);
+    $this->assertEqual($vocabulary->name, 'vocabulary_name0');
+    $this->assertEqual($vocabulary->machine_name, 'vocabulary_machine_name0');
+    $this->assertEqual($vocabulary->heirarchy, 0);
   }
 
   public function testVocabularyFactoryDroneCreateWithOverridenOptions() {
@@ -29,8 +29,8 @@ class VocabularyFactoryDroneTest extends FactoryDroneTestCase {
                                                            'heirarchy' => 1,
                                                           ));
     $this->assertNotNull($vocabulary->vid);
-    $this->assertequal($vocabulary->name, 'Test Vocabulary');
-    $this->assertequal($vocabulary->machine_name, 'test_vocab');
-    $this->assertequal($vocabulary->heirarchy, 1);
+    $this->assertEqual($vocabulary->name, 'Test Vocabulary');
+    $this->assertEqual($vocabulary->machine_name, 'test_vocab');
+    $this->assertEqual($vocabulary->heirarchy, 1);
   }
 }
