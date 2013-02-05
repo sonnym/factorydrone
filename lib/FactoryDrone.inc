@@ -31,6 +31,13 @@ class FactoryDrone {
    *
    * @param array $opts
    *   An array containing the default options for the factory
+   *
+   * For object specific parameters, see the following:
+   * @see https://drupal.org/node/49768
+   * @see http://api.drupal.org/api/drupal/developer%21globals.php/global/user/7
+   * @see http://api.drupal.org/api/drupal/modules%21taxonomy%21taxonomy.module/function/taxonomy_term_save/7
+   * @see http://api.drupal.org/api/drupal/modules%21taxonomy%21taxonomy.module/function/taxonomy_vocabulary_save/7
+   *
    */
   public static function define($type, $name, $opts) {
     self::$definitions[$name] = array('type' => $type, 'opts' => $opts);
