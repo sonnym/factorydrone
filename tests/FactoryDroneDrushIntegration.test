@@ -3,12 +3,30 @@ module_load_include('inc', 'factorydrone', 'tests/FactoryDroneTestCase');
 module_load_include('inc', 'factorydrone', 'factorydrone.drush');
 
 class FactoryDroneDrushIntegrationTest extends FactoryDroneTestCase {
+  private $drush_available = FALSE;
+
   public static function getInfo() {
     return array(
       'name' => 'Drush integration unit tests',
       'description' => 'Test the methods for integrating with drush',
       'group' => 'Factory Drone',
     );
+  }
+
+  /**
+   * Override setUp method.
+   *
+   * Running the tests via the web interface prevents calls to drush commands,
+   * so prevent running tests dependent thereupon.
+   */
+  public function setUp() {
+    $drush_exec_output = array();
+    $drush_exec_return_var = -1;
+    exec('drush status', $drush_exec_output, $drush_exec_return_var);
+
+    $this->drush_available = ($drush_exec_return_var == 0);
+
+    parent::setUp();
   }
 
   public function testDrushFactoryDroneCreateInternals() {
@@ -19,12 +37,20 @@ class FactoryDroneDrushIntegrationTest extends FactoryDroneTestCase {
   }
 
   public function testDrushFactoryDroneCreateExternalsWithPorcelain() {
+    if (!$this->drush_available) {
+      return;
+    }
+
     $command_output = `drush fd-create 'node' --porcelain --factory_path='{$this->factory_path}'`;
     $node = unserialize($command_output);
     $this->assertNotNull($node->nid);
   }
 
   public function testDrushFactoryDroneCreateExternals() {
+    if (!$this->drush_available) {
+      return;
+    }
+
     $command_output = `drush fd-create 'node' --factory_path='{$this->factory_path}'`;
     $this->assertNotNull($command_output);
   }

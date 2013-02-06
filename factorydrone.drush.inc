@@ -4,6 +4,8 @@
  * Drush integration for the factorydrone module
  */
 
+module_load_include('inc', 'factorydrone', 'lib/FactoryDrone');
+
 /**
  * Implments hook_drush_command().
  */
