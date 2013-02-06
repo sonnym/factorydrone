@@ -24,7 +24,7 @@ class FactoryDroneDrushIntegrationTest extends FactoryDroneTestCase {
     $drush_exec_return_var = -1;
     exec('drush status', $drush_exec_output, $drush_exec_return_var);
 
-    $this->drush_available = ($drush_exec_return_var == 0);
+    $this->drush_available = $drush_exec_return_var == 0 && count($drush_exec_output) != 0;
 
     parent::setUp();
   }
