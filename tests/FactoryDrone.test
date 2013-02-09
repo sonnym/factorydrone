@@ -10,6 +10,12 @@ class FactoryDroneTest extends FactoryDroneTestCase {
     );
   }
 
+  public function testFactoryDroneCanCreateRandomCallbacks() {
+    $random = FactoryDrone::random(10, function ($n) { return $n; });
+    $this->assertNotEqual($random(), $random());
+    $this->assertEqual(10, strlen($random()));
+  }
+
   public function testFactoryDroneCanCreateSequenceCallbacks() {
     $sequence = FactoryDrone::sequence(function ($n) { return $n; });
     $this->assertEqual(0, $sequence());

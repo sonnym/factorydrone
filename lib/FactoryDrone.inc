@@ -145,6 +145,32 @@ class FactoryDrone {
   }
 
   /**
+   * Creates a random value generator.
+   *
+   * The values passed to the generator will be lowercase letters.
+   *
+   * @param int $length
+   *   The length of random strings to generate.
+   *
+   * @param Closure $generator
+   *   The method is passed a single random string value.
+   *
+   * @return Closure
+   *   A function that consumes generates and consumes random strings.
+   */
+  public static function random($length, Closure $generator) {
+    return function () use ($length, $generator) {
+      $random_value = '';
+
+      for ($i = 0; $i < $length; $i++) {
+        $random_value .= chr(rand(97, 122));
+      }
+
+      return $generator($random_value);
+    };
+  }
+
+  /**
    * Creates a sequence to assist with uniqueness constraints.
    *
    * @param Closure $generator
