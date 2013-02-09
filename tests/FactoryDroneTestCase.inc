@@ -21,7 +21,7 @@ class FactoryDroneTestCase extends DrupalWebTestCase {
 
   public function __get($name) {
     if ($name == 'factory_path') {
-      return join(DIRECTORY_SEPARATOR, array(dirname(__FILE__), 'factories'));
+      return join(DIRECTORY_SEPARATOR, array(__DIR__, 'factories'));
     }
   }
 }
