@@ -68,3 +68,15 @@ so is as simple as running a command such as the following
 `drush fd-create FACTORY_NAME optional_aguments=optional_values`.
 
 Read `drush help fd-create` for more information.
+
+## Supported Types
+At present, Factory Drone has support for the following types of data in Drupal:
+
+* Vocabularies
+* Terms
+* Roles
+* Users
+* Content Types
+* Nodes
+* Menus
+* Menu Links
