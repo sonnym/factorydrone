@@ -53,7 +53,7 @@ of three parts:
 
 When using a factory, it is possible to override any of the options provided by
 the definition. Consequently, you always have control over the data at the time
-you create it. Using factories is similarly simply:
+you create it. Using factories is as simple as:
 
     FactoryDrone::create('simple page');
 
