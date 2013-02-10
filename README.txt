@@ -26,7 +26,7 @@ The above steps can be accomplished wherever it is most fitting to do so. The
 following code snippet is an example of the methods to do so.
 
     FactoryDrone::addFactoryPath(join(DIRECTORY_SEPARATOR,
-    						                 __DIR__, 'factories')));
+    						                      array(__DIR__, 'factories')));
     FactoryDrone::loadDefinitions();
 
 Factory Drone can load factory definitions from multiple locations if necessary,
