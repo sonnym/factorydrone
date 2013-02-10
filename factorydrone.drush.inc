@@ -35,6 +35,8 @@ function factorydrone_drush_command() {
  *  Command callback. Create a new object.
  */
 function drush_factorydrone_create($name = NULL) {
+  module_load_include('inc', 'factorydrone', 'lib/FactoryDrone');
+
   if ($factory_path = drush_get_option('factory_path')) {
     FactoryDrone::addFactoryPath($factory_path);
     FactoryDrone::loadDefinitions();
