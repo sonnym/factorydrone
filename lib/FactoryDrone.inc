@@ -145,6 +145,46 @@ class FactoryDrone {
   }
 
   /**
+   * Creates associated objects for a field.
+   *
+   * @param string $name
+   *   The name of the factory to generate
+   *
+   * @param array $opts
+   *   An associative array with options for the factory
+   *
+   * @return int|string
+   *   The value necessary for association with the new object
+   */
+  public static function association($name, $opts = array()) {
+    return function () use ($name, $opts) {
+      $factory_object = FactoryDrone::create($name, $opts);
+      $factory_type = FactoryDrone::getType($name);
+
+      switch ($factory_type) {
+        case 'vocabulary':
+          return $factory_object->vid;
+        case 'term':
+          return $factory_object->tid;
+        case 'role':
+          return array($factory_object->rid => $factory_object->name);
+        case 'user':
+          return $factory_object->uid;
+        case 'content type':
+          return $factory_object->type;
+        case 'node':
+          return $factory_object->nid;
+        case 'menu':
+          return $factory_object->menu_name;
+        case 'menu link':
+          return $factory_object->mlid;
+        default:
+          throw new Exception("Factories of type '{$factory_type}' are not supported.");
+      }
+    };
+  }
+
+  /**
    * Creates a random value generator.
    *
    * The values passed to the generator will be lowercase letters.

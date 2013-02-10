@@ -19,4 +19,10 @@ class NodeFactoryDroneTest extends FactoryDroneTestCase {
     $node = FactoryDrone::create('node');
     $this->assertNotNull($node->nid);
   }
+
+  public function testNodeContentTypeAssociationCreate() {
+    $node = FactoryDrone::create('node w content type');
+    $this->assertNotNull($node->nid);
+    $this->assertNotNull($node->type);
+  }
 }

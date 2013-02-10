@@ -42,9 +42,12 @@ of three parts:
   3. An array of options that will represent the default options for the factory
 
     FactoryDrone::define('node', 'simple page', array(
-      'type' => ContentTypeFactoryDrone::create('page')->type,
+      'type' => FactoryDrone::association('a content type factory'),
       'title' => FactoryDrone::sequence(function ($n) {
         return "node_title{$n}";
+      }),
+      'body' => FactoryDrone::random(function ($n) {
+        return "node_body{$n}";
       }),
     ));
 

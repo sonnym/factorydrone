@@ -19,4 +19,10 @@ class UserFactoryDroneTest extends FactoryDroneTestCase {
     $user = FactoryDrone::create('user');
     $this->assertNotNull($user->uid);
   }
+
+  public function testUserRoleAssocationCreate() {
+    $user = FactoryDrone::create('user w role');
+    $reloaded_user = user_load($user->uid);
+    $this->assert(in_array('new_user_role', array_values($reloaded_user->roles)));
+  }
 }

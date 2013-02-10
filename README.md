@@ -30,8 +30,9 @@ Factory definition files, which must have the extension `.php`, which have been 
 
 ```php
 FactoryDrone::define('node', 'simple page', array(
-  'type' => ContentTypeFactoryDrone::create('page')->type,
+  'type' => FactoryDrone::association('a content type factory'),
   'title' => FactoryDrone::sequence(function ($n) { return "node_title{$n}"; }),
+  'body' => FactoryDrone::random(function ($n) { return "node_body{$n}"; }),
 ));
 ```
 
