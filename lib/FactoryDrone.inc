@@ -253,6 +253,7 @@ class FactoryDrone {
           }
         }
       }
+      closedir($handle);
     }
   }
 
