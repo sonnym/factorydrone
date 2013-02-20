@@ -1,4 +1,6 @@
 # Factory Drone
+[![Build Status](https://travis-ci.org/sonnym/factorydrone.png?branch=7.x-1.x)](https://travis-ci.org/sonnym/factorydrone)
+
 The primary aim of Factory Drone is to a fill a void in the world of Drupal development and testing. Factory Drone provides an interface for creating various types of objects (vocabularies, terms, content types, nodes), both through code and through Drush.
 
 ## Background
