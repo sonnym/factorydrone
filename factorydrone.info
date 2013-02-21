@@ -4,8 +4,6 @@ package = Development
 php = 5.3
 core = 7.x
 
-hidden = TRUE
-
 ; register test files
 files[] = tests/FactoryDrone.test
 files[] = tests/ContentTypeFactory.test
