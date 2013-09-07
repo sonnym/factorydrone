@@ -13,6 +13,7 @@ mysql:
   encoding: utf8
 
 before_script:
+  # navigate out of module directory to prevent blown stack by recursive module lookup
   - cd ../..
 
   # install drush
@@ -26,7 +27,7 @@ before_script:
 
   # reference and enable factorydrone in build site
   - cd factorydrone_test/drupal
-  - ln -s `readlink -e ../../sonnym/factorydrone` sites/all/modules/factorydrone
+  - ln -s $(readlink -e $(cd -)) sites/all/modules/factorydrone
   - drush --yes pm-enable factorydrone
 
 script: drush test-run 'Factory Drone'
