@@ -26,8 +26,8 @@ before_script:
   - php -d sendmail_path=`which true` `pear config-get php_dir`/drush/drush.php --yes core-quick-drupal --profile=testing --no-server --db-url=mysql://root:@127.0.0.1/factorydrone_test --enable=simpletest factorydrone_test
 
   # reference and enable factorydrone in build site
+  - ln -s $(readlink -e $(cd -)) factorydrone_test/drupal/sites/all/modules/factorydrone
   - cd factorydrone_test/drupal
-  - ln -s $(readlink -e $(cd -)) sites/all/modules/factorydrone
   - drush --yes pm-enable factorydrone
 
 script: drush test-run 'Factory Drone'
