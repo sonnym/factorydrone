@@ -13,8 +13,6 @@ mysql:
   encoding: utf8
 
 before_script:
-  - cd ../..
-
   # install drush
   - pear channel-discover pear.drush.org
   - pear install drush/drush-5.8.0
@@ -26,7 +24,7 @@ before_script:
 
   # reference and enable factorydrone in build site
   - cd factorydrone_test/drupal
-  - ln -s `readlink -e ../../sonnym/factorydrone` sites/all/modules/factorydrone
+  - ln -s `readlink -e ../../` sites/all/modules/factorydrone
   - drush --yes pm-enable factorydrone
 
 script: drush test-run 'Factory Drone'
