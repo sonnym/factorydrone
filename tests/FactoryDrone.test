@@ -29,7 +29,7 @@ class FactoryDroneTest extends FactoryDroneTestCase {
   }
 
   public function testFactoryDroneThrowsWhenAddingFileToFactoryDronePaths() {
-    $this->assertThrows('$path must be a directory.', function () {
+    $this->assertThrows('/^\$path must be a directory.$/', function () {
       FactoryDrone::addFactoryPath(__FILE__);
     });
   }
@@ -60,13 +60,13 @@ class FactoryDroneTest extends FactoryDroneTestCase {
   }
 
   public function testFactoryDroneThrowsWhenAttemptingToAccessNonexistentFactoryDrone() {
-    $this->assertThrows('There is no factory definition called nonexistent', function() {
+    $this->assertThrows('/^There is no factory definition called nonexistent/', function() {
       FactoryDrone::getDefaultOptions('nonexistent');
     });
   }
 
   public function testFactoryDroneThrowsWhenAttemptingToCreateAnUnknownType() {
-    $this->assertThrows("Factories of type 'undefined type' are not supported.", function() {
+    $this->assertThrows("/^Factories of type 'undefined type' are not supported.$/", function() {
       FactoryDrone::create('undefined type');
     });
   }
