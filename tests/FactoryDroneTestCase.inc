@@ -15,7 +15,7 @@ class FactoryDroneTestCase extends DrupalWebTestCase {
     try {
       $cb();
     } catch (Exception $e) {
-      $this->assertEqual($e->getMessage(), $message);
+      $this->assert((bool) preg_match($message, $e->getMessage()));
     }
   }
 

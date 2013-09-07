@@ -60,7 +60,7 @@ class FactoryDroneTest extends FactoryDroneTestCase {
   }
 
   public function testFactoryDroneThrowsWhenAttemptingToAccessNonexistentFactoryDrone() {
-    $this->assertThrows('There is no factory definition called nonexistent.', function() {
+    $this->assertThrows('There is no factory definition called nonexistent', function() {
       FactoryDrone::getDefaultOptions('nonexistent');
     });
   }

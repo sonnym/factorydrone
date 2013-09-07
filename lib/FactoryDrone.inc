@@ -117,7 +117,8 @@ class FactoryDrone {
    */
   public static function getDefaultOptions($name) {
     if (!isset(self::$definitions[$name])) {
-      throw new Exception("There is no factory definition called {$name}.");
+      $search_paths = join(', ', self::$factoryPaths);
+      throw new Exception("There is no factory definition called {$name} in [{$search_paths}].");
     }
 
     $default_options = self::$definitions[$name]['opts'];
